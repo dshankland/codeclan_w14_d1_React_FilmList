@@ -35,14 +35,23 @@ class FilmBox extends Component {
         }
       ]
     }
+
+    this.handleFilmSubmit = this.handleFilmSubmit.bind(this);
+  }
+
+  handleFilmSubmit(newFilm) {
+    newFilm.id = Date.now();
+    const updatedFilms = [...this.state.data, newFilm];
+    this.setState({data: updatedFilms});
   }
 
   render () {
     return (
       <div>
-        {/* <FilmList data={this.state.data}/> */}
+        <FilmList data={this.state.data}/>
         <hr/>
-        {/*<FilmForm/>*/}
+        <FilmForm onFilmSubmit={this.handleFilmSubmit}/>
+        <hr/>
       </div>
     );
   }
